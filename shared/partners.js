@@ -1,3 +1,7 @@
+// ─── Static Partners Data ─────────────────────────────────────────────────────
+// Fallback / seed data for community partners used before the JSON server was introduced.
+// Each object has an id, name, image, featured flag, and description.
+// featured: true marks the partner shown in the HomeScreen featured card.
 export const PARTNERS = [
     {
         id: 0,
@@ -27,9 +31,8 @@ export const PARTNERS = [
         id: 3,
         name: 'Node Outdoor Apparel',
         image: require("../assets/images/node-logo.png"),
-        featured: true,
+        featured: true, // This partner appears in the HomeScreen featured card
         description:
             'From polar fleeces to swimsuits, hiking boots to waders, a visit to Node will be sure to get you covered.',
     },
 ];
-

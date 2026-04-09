@@ -1,9 +1,13 @@
+// ─── Imports ────────────────────────────────────────────────────────────────
 import { ScrollView, Text } from 'react-native';
 import { Avatar, Card, ListItem } from 'react-native-elements';
 import { useSelector } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import Loading from '../components/LoadingComponent';
+import * as Animatable from 'react-native-animatable';
 
+// ─── Helper Component ─────────────────────────────────────────────────────────
+// Mission renders a static card describing the company's purpose and values.
 function Mission() {
     return (
         <Card>
@@ -23,33 +27,53 @@ function Mission() {
     );
 }
 
+// ─── Screen Component ─────────────────────────────────────────────────────────
+// AboutScreen shows the Mission card followed by a list of community partners.
+// Handles three render states: loading, error, and success.
 const AboutScreen = () => {
     const partners = useSelector((state) => state.partners);
 
+    // Show Mission + spinner while partners are loading
     if (partners.isLoading) {
         return (
             <ScrollView>
-                <Mission />
-                <Card>
-                    <Card.Title>Community Partners</Card.Title>
-                    <Card.Divider />
-                    <Loading />
-                </Card>
+                <Animatable.View
+                    animation='fadeInDown'
+                    duration={2000}
+                    delay={1000}
+                >
+                    <Mission />
+                    <Card>
+                        <Card.Title>Community Partners</Card.Title>
+                        <Card.Divider />
+                        <Loading />
+                    </Card>
+                </Animatable.View>
             </ScrollView>
         );
     }
+
+    // Show Mission + error message if the partners fetch failed
     if (partners.errMess) {
         return (
             <ScrollView>
-                <Mission />
-                <Card>
-                    <Card.Title>Community Partners</Card.Title>
-                    <Card.Divider />
-                    <Text>{partners.errMess}</Text>
-                </Card>
+                <Animatable.View
+                    animation='fadeInDown'
+                    duration={2000}
+                    delay={1000}
+                >
+                    <Mission />
+                    <Card>
+                        <Card.Title>Community Partners</Card.Title>
+                        <Card.Divider />
+                        <Text>{partners.errMess}</Text>
+                    </Card>
+                </Animatable.View>
             </ScrollView>
         );
     }
+
+    // Success: render Mission + list of partner rows with avatar, name, description
     return (
         <ScrollView>
             <Mission />
@@ -58,6 +82,7 @@ const AboutScreen = () => {
                 <Card.Divider />
                 {partners.partnersArray.map((partner) => (
                     <ListItem key={partner.id}>
+                        {/* Circular partner logo */}
                         <Avatar
                             rounded
                             source={{ uri: baseUrl + partner.image }}
@@ -75,4 +100,5 @@ const AboutScreen = () => {
     );
 };
 
+// ─── Export ──────────────────────────────────────────────────────────────────
 export default AboutScreen;

@@ -1,21 +1,32 @@
+// ─── Imports ────────────────────────────────────────────────────────────────
 import { ScrollView, Text } from "react-native";
 import { Card, Button, Icon } from "react-native-elements";
+import * as Animatable from 'react-native-animatable';
 
-
+// ─── Screen Component ─────────────────────────────────────────────────────────
+// ContactScreen displays the company's mailing address, phone number, and email
+// inside a styled card.
 
 const ContactScreen = () => {
-    return ( <ScrollView>
-        <Card wrapperStyle={{ margin: 20 }} >
-            <CardTitle>Contact Information</CardTitle>
-            <Card.Divider/>
-            <Text>1 Nucamp Way</Text>
-            <Text>Seattle, WA 98001</Text>
-            <Text style={{ marginBottom: 10 }} >U.S.A.</Text>
-            <Text>Phone: 1-206-555-1234</Text>
-            <Text>Email: campsites@nucamp.com</Text>
-        </Card>
-     </ScrollView> 
-    )           
+    return (
+        <ScrollView>
+            <Animatable.View
+                animation='fadeInDown'
+                duration={2000}
+                delay={1000}
+            >
+                <Card wrapperStyle={{ margin: 20 }}>
+                    <Card.Title>Contact Information</Card.Title>
+                    <Card.Divider />
+                    <Text>1 Nucamp Way</Text>
+                    <Text>Seattle, WA 98001</Text>
+                    <Text style={{ marginBottom: 10 }}>U.S.A.</Text>
+                    <Text>Phone: 1-206-555-1234</Text>
+                    <Text>Email: campsites@nucamp.co</Text>
+                </Card>
+            </Animatable.View>
+        </ScrollView>
+    );
 };
 
 export default ContactScreen;

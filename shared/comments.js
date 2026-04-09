@@ -1,4 +1,9 @@
+// ─── Static Comments Data ─────────────────────────────────────────────────────
+// Fallback / seed data for user comments used before the JSON server was introduced.
+// Each object links to a campsite via campsiteId and stores a rating (1–5),
+// comment text, author name, and ISO date string.
 export const COMMENTS = [
+    // ── Comments for campsiteId 0 (React Lake Campground) ──
     {
       id: 0,
       campsiteId: 0,
@@ -39,6 +44,7 @@ export const COMMENTS = [
       author: "R. E. Osariemen",
       date: "2018-07-23T19:44Z"
     },
+    // ── Comments for campsiteId 1 (Chrome River Campground) ──
     {
       id: 5,
       campsiteId: 1,
@@ -79,6 +85,7 @@ export const COMMENTS = [
       author: "Jordan Runn",
       date: "2019-08-04T20:11Z"
     },
+    // ── Comments for campsiteId 2 (Breadcrumb Trail Campground) ──
     {
       id: 10,
       campsiteId: 2,
@@ -119,6 +126,7 @@ export const COMMENTS = [
       author: "Dave Lister",
       date: "2019-08-04T20:11Z"
     },
+    // ── Comments for campsiteId 3 (Redux Woods Campground) ──
     {
       id: 15,
       campsiteId: 3,
@@ -160,4 +168,3 @@ export const COMMENTS = [
       date: "2019-02-18T18:12Z"
     }
 ];
-

@@ -1,3 +1,7 @@
+// ─── Static Campsites Data ────────────────────────────────────────────────────
+// Fallback / seed data for campsites used before the JSON server was introduced.
+// Each object represents one campsite with an id, name, image, elevation,
+// featured flag, and description. featured: true marks the item shown on HomeScreen.
 export const CAMPSITES = [
     {
         id: 0,
@@ -28,7 +32,7 @@ export const CAMPSITES = [
         name:"Redux Woods Campground",
         image: require("../assets/images/redux-woods.jpg"),
         elevation: 42,
-        featured: true,
+        featured: true, // This campsite appears in the HomeScreen featured card
         description: "You'll never want to leave this hidden gem, deep within the lush Redux Woods."
     }
 ];

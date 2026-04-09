@@ -1,3 +1,4 @@
+// ─── Imports ────────────────────────────────────────────────────────────────
 import { Image, Platform, StyleSheet, Text, View } from "react-native";
 import Constants from "expo-constants";
 import CampsiteInfoScreen from "./CampsiteInfoScreen";
@@ -20,6 +21,8 @@ import { fetchPartners } from "../features/partners/partnersSlice";
 import { fetchCampsites } from "../features/campsites/campsitesSlice";
 import { fetchPromotions } from "../features/promotions/promotionsSlice";
 import { fetchComments } from "../features/comments/commentsSlice";
+import FavoritesScreen from "./FavoritesScreen";
+import LoginScreen from "./LoginScreen";
 
 const Drawer = createDrawerNavigator();
 
@@ -122,6 +125,51 @@ const ReservationNavigator = () => {
   );
 };
 
+const FavoritesNavigator = () => {
+  const Stack = createStackNavigator();
+  return (
+    <Stack.Navigator screenOptions={screenOptions}>
+      <Stack.Screen
+        name="Favorites"
+        component={FavoritesScreen}
+        options={({ navigation }) => ({
+          title: "Favorite Campsites",
+          headerLeft: () => (
+            <Icon
+              name="heart"
+              type="font-awesome"
+              iconStyle={styles.stackIcon}
+              onPress={() => navigation.toggleDrawer()}
+            />
+          ),
+        })}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const LoginNavigator = () => {
+  const Stack = createStackNavigator();
+  return (
+    <Stack.Navigator screenOptions={screenOptions}>
+      <Stack.Screen
+        name="Login"
+        component={LoginScreen}
+        options={({ navigation }) => ({
+          headerLeft: () => (
+            <Icon
+              name="sign-in"
+              type="font-awesome"
+              iconStyle={styles.stackIcon}
+              onPress={() => navigation.toggleDrawer()}
+            />
+          ),
+        })}
+      />
+    </Stack.Navigator>
+  );
+};
+
 const DirectoryNavigator = () => {
   const Stack = createStackNavigator();
   return (
@@ -192,6 +240,22 @@ const Main = () => {
         }}
       >
         <Drawer.Screen
+          name="Login"
+          component={LoginNavigator}
+          options={{
+            headerShown: false,
+            drawerIcon: ({ color }) => (
+              <Icon
+                name="sign-in"
+                type="font-awesome"
+                size={24}
+                iconStyle={{ width: 24 }}
+                color={color}
+              />
+            ),
+          }}
+        />
+        <Drawer.Screen
           name="HomeNav"
           component={HomeNavigator}
           options={{
@@ -234,6 +298,23 @@ const Main = () => {
             drawerIcon: ({ color }) => (
               <Icon
                 name="tree"
+                type="font-awesome"
+                size={24}
+                iconStyle={{ width: 24 }}
+                color={color}
+              />
+            ),
+          }}
+        />
+        <Drawer.Screen
+          name="FavoritesNav"
+          component={FavoritesNavigator}
+          options={{
+            title: "My Favorites",
+            headerShown: false,
+            drawerIcon: ({ color }) => (
+              <Icon
+                name="heart"
                 type="font-awesome"
                 size={24}
                 iconStyle={{ width: 24 }}
